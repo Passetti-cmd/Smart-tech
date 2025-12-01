@@ -27,6 +27,13 @@
    * Exemplo: 0.3 = vídeo mais visível, 0.6 = overlay mais escuro
    */
   --hero-overlay-opacity: 0.7;
+  /* 
+   * Paleta de cores suaves para diferenciação visual discreta
+   * Paleta A (frio suave) - harmoniza com o tema azul do site
+   */
+  --accent-1: #f0f4ff; /* Fundo suave para seção "Por que Escolher" */
+  --accent-2: #e6ecff; /* Fundo suave para seção "Depoimentos" */
+  --text-darker: #223344; /* Títulos com tom mais escuro para contraste WCAG AA */
 }
 
 html {
@@ -514,6 +521,15 @@ section.visible::before {
   line-height: 1.2;
 }
 
+/* 
+ * Títulos nas seções com cores suaves usam tom mais escuro para contraste WCAG AA
+ * Aplica-se apenas nas seções .porque-escolher e .depoimentos
+ */
+.porque-escolher .section-title,
+.depoimentos .section-title {
+  color: var(--text-darker);
+}
+
 .section-title::after {
   content: "";
   position: absolute;
@@ -716,12 +732,67 @@ section.visible::before {
 }
 
 /* Por que Escolher */
+/* 
+ * Seção "Por que Escolher" - Aplicação de fundo suave e discreto
+ * Usa --accent-1 (#f0f4ff) para diferenciação visual sutil
+ * Mantém todo o layout, tipografia e espaçamentos originais
+ */
 .porque-escolher {
-  background: linear-gradient(
-    180deg,
-    var(--cor-branco) 0%,
-    var(--cor-cinza-claro) 100%
-  );
+  background: var(--accent-1);
+  padding: 100px 0;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+}
+
+.porque-logo-texto {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  margin: 4rem 0;
+  padding: 4rem;
+  background: var(--cor-branco);
+  border-radius: 20px;
+  box-shadow: var(--sombra-card);
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.porque-logo {
+  flex-shrink: 0;
+  width: 500px;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cor-cinza-claro);
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: var(--sombra);
+}
+
+.porque-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.porque-texto {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.porque-texto p {
+  font-size: 1.2rem;
+  line-height: 2;
+  color: var(--cor-texto);
+  margin: 0;
+  text-align: justify;
+  text-indent: 2rem;
+  max-width: 100%;
 }
 
 .porque-grid {
@@ -823,13 +894,16 @@ section.visible::before {
   animation-delay: 0.5s;
 }
 
-/* Depoimentos Premium */
+/* 
+ * Seção "O que nossos clientes dizem" - Aplicação de fundo suave e discreto
+ * Usa --accent-2 (#e6ecff) para diferenciação visual sutil
+ * Borda esquerda fina para separação visual sem impacto no layout
+ * Mantém todo o layout, tipografia e espaçamentos originais
+ */
 .depoimentos {
-  background: linear-gradient(
-    180deg,
-    var(--cor-cinza-claro) 0%,
-    var(--cor-branco) 100%
-  );
+  background: var(--accent-2);
+  border-left: 4px solid rgba(0, 102, 204, 0.08);
+  padding: 100px 0;
 }
 
 /* Container do Widget Elfsight Google Reviews */
@@ -1252,6 +1326,31 @@ section.visible::before {
   }
 
   .servicos-grid,
+  .porque-logo-texto {
+    flex-direction: column;
+    text-align: center;
+    gap: 3rem;
+    padding: 3rem 2rem;
+  }
+
+  .porque-logo {
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+    padding: 2.5rem;
+  }
+
+  .porque-texto {
+    align-items: flex-start;
+  }
+
+  .porque-texto p {
+    text-align: justify;
+    text-indent: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.9;
+  }
+
   .porque-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -1361,6 +1460,28 @@ section.visible::before {
   }
 
   .servico-card,
+  .porque-logo-texto {
+    padding: 2rem 1.5rem;
+    gap: 2rem;
+  }
+
+  .porque-logo {
+    width: 300px;
+    height: 300px;
+    padding: 2rem;
+  }
+
+  .porque-texto {
+    align-items: flex-start;
+  }
+
+  .porque-texto p {
+    text-align: justify;
+    text-indent: 1.2rem;
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
   .porque-card {
     padding: 2.5rem 1.5rem;
   }
